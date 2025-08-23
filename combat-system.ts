@@ -34,8 +34,15 @@ export class CombatSystem extends EventEmitter<EventMap> {
         return this.enemyParty.find(e => e.isAlive());
     }
 
-    private getFirstAlivePlayer(): Character | undefined {
-        return this.playerParty.find(p => p.isAlive());
+    private getRandomAlivePlayer(): Character | undefined {
+        const alivePlayers = this.playerParty.filter(p => p.isAlive());
+
+        if (alivePlayers.length === 0) {
+            return undefined;
+        }
+
+        const randomIndex = Math.floor(Math.random() * alivePlayers.length);
+        return this.playerParty[randomIndex];
     }
 
     private isPlayerCharacter(character: Character): boolean {
@@ -68,7 +75,7 @@ export class CombatSystem extends EventEmitter<EventMap> {
         
         const damage = command.attacker.calculateAttackDamage();
         const actualDamage = command.target.takeDamage(damage);
-        
+
         this.state = CombatState.ProcessingPlayerAction;
         
         this.emit(COMBAT_EVENTS.DAMAGE_DEALT, new DamageDealtEvent(command.target, actualDamage));
@@ -121,8 +128,7 @@ export class CombatSystem extends EventEmitter<EventMap> {
 
     private processEnemyAction() {
         const currentActor = this.getCurrentActor();
-
-        const target = this.getFirstAlivePlayer();
+        const target = this.getRandomAlivePlayer();
         if (!target) {
             console.error("There is no player to attack!");
             return;

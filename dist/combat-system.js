@@ -25,8 +25,13 @@ export class CombatSystem extends EventEmitter {
     getFirstAliveEnemy() {
         return this.enemyParty.find(e => e.isAlive());
     }
-    getFirstAlivePlayer() {
-        return this.playerParty.find(p => p.isAlive());
+    getRandomAlivePlayer() {
+        const alivePlayers = this.playerParty.filter(p => p.isAlive());
+        if (alivePlayers.length === 0) {
+            return undefined;
+        }
+        const randomIndex = Math.floor(Math.random() * alivePlayers.length);
+        return this.playerParty[randomIndex];
     }
     isPlayerCharacter(character) {
         return this.playerParty.includes(character);
@@ -93,7 +98,7 @@ export class CombatSystem extends EventEmitter {
     }
     processEnemyAction() {
         const currentActor = this.getCurrentActor();
-        const target = this.getFirstAlivePlayer();
+        const target = this.getRandomAlivePlayer();
         if (!target) {
             console.error("There is no player to attack!");
             return;
