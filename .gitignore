@@ -1,0 +1,20 @@
+# Node modules folder (installed dependencies)
+node_modules/
+
+# Compiled JavaScript source maps (optional)
+*.js.map
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript build info files
+*.tsbuildinfo
+
+# Environment variable files (if any)
+.env
+
+# IDE/editor specific files
+.vscode/
+.DS_Store

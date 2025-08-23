@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Combat System</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+            display: block;
+            margin: 10px 0;
+        }
+
+        body {
+            display: grid;
+            place-items: center;
+            gap: 20px;
+        }
+
+        .ui-container {
+            text-align: center;
+        }
+
+        #target-selection {
+            text-align: center; /* keep overall content centered */
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        #target-selection > div {
+            display: flex;          /* align radio and label horizontally */
+            justify-content: flex-start; /* left align radio and label within their box */
+            gap: 8px;               /* space between radio and label */
+            width: 200px;           /* fixed or max width so they don't shrink to small size */
+            margin: 0 auto 10px;    /* centers each radio container while stacking vertically */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="game-canvas" width="400" height="300"></canvas>
+    
+    <div class="ui-container">
+        <h3 id="status-message">Player's Turn</h3>
+
+        <div id="target-selection" class="target-group">
+            <h4>Select Target:</h4>
+        </div>
+
+        <button id="attack-btn">Attack</button>
+    </div>
+    
+    <script type="module" src="dist/main.js"></script>
+</body>
+</html>
