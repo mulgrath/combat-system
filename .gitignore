@@ -1,6 +1,9 @@
 # Node modules folder (installed dependencies)
 node_modules/
 
+# Hide dist
+/dist
+
 # Compiled JavaScript source maps (optional)
 *.js.map
 
