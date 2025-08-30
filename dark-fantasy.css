@@ -1,0 +1,166 @@
+:root {
+    /* Color Palette */
+    --bg-primary: #1a1612;           /* Deep charcoal brown */
+    --bg-secondary: #2d251e;         /* Lighter brown for cards */
+    --bg-tertiary: #3a2f26;          /* Hover states */
+    
+    --accent-primary: #d4af37;       /* Gold accent */
+    --accent-secondary: #8b7355;     /* Muted bronze */
+    --accent-danger: #8b4513;        /* Dark red-brown for delete */
+
+    --health-player: #4a7c59;        /* Dark green for player */
+    --health-enemy: #8b2513;         /* Dark red-brown for enemies */
+    --health-neutral: #6b5b47;       /* Dark brown for neutral/NPCs */
+    --health-background: #2d251e;    /* Darker background for health bars */
+    
+    --text-primary: #f5f5dc;         /* Cream white */
+    --text-secondary: #c4b59a;       /* Muted cream */
+    --text-disabled: #6b5b47;        /* Dark brown */
+    
+    --border-primary: #66460a;       /* Subtle borders */
+    --border-accent: var(--accent-primary);
+    
+    /* Typography */
+    --font-family: 'Palatinio', 'Times New Roman', serif;
+    --font-size-large: 1.25rem;
+    --font-size-base: 1rem;
+    --font-size-small: 0.875rem;
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    
+    /* Layout */
+    --border-radius: 4px;
+    --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --transition: all 0.2s ease;
+}
+
+/* Base Styling */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    margin: 0;
+    padding: var(--spacing-lg);
+}
+
+/* Card/Container Components */
+.card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    box-shadow: var(--box-shadow);
+}
+
+.card-hover {
+    transition: var(--transition);
+}
+
+.card-hover:hover {
+    background-color: var(--bg-tertiary);
+    border-color: var(--accent-secondary);
+}
+
+/* Button Components */
+.btn {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn:hover {
+    background-color: var(--bg-tertiary);
+    border-color: var(--accent-secondary);
+}
+
+.btn-primary {
+    background-color: var(--accent-primary);
+    color: var(--bg-primary);
+    border-color: var(--accent-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-secondary);
+    border-color: var(--accent-secondary);
+}
+
+.btn-danger {
+    border-color: var(--accent-danger);
+    color: var(--accent-danger);
+}
+
+.btn-danger:hover {
+    background-color: var(--accent-danger);
+    color: var(--text-primary);
+}
+
+/* Form Components */
+.form-input {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+.form-input.valid {
+    border-color: #4a7c59;
+    background-color: rgba(74, 124, 89, 0.1);
+}
+
+.form-input.invalid {
+    border-color: var(--accent-danger);
+    background-color: rgba(139, 69, 19, 0.1);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--accent-primary);
+    margin-top: 0;
+    margin-bottom: var(--spacing-md);
+}
+
+.section-header {
+    color: var(--accent-primary);
+    margin-top: var(--spacing-md);
+    margin-bottom: 0;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-primary);
+    border-radius: var(--border-radius);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-secondary);
+}

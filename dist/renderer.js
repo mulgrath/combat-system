@@ -25,6 +25,22 @@ class CharacterDisplay {
         return current + (target - current) * speed;
     }
 }
+class ThemeColors {
+    static getColor(property) {
+        return getComputedStyle(document.documentElement)
+            .getPropertyValue(property)
+            .trim();
+    }
+    static get textPrimary() { return this.getColor('--text-primary'); }
+    static get bgPrimary() { return this.getColor('--bg-primary'); }
+    static get accentPrimary() { return this.getColor('--accent-primary'); }
+    static get accentDanger() { return this.getColor('--accent-danger'); }
+    static get borderPrimary() { return this.getColor('--border-primary'); }
+    static get healthPlayer() { return this.getColor('--health-player'); }
+    static get healthEnemy() { return this.getColor('--health-enemy'); }
+    static get healthNeutral() { return this.getColor('--health-neutral'); }
+    static get healthBackground() { return this.getColor('--health-background'); }
+}
 export class SimpleRenderer {
     constructor(playerParty, enemyParty) {
         this.playerDisplays = [];
@@ -60,17 +76,17 @@ export class SimpleRenderer {
     }
     drawFrame() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        let playerStartY = 200;
+        let playerStartY = 250;
         let enemyStartY = 50;
         let yIncrement = 50;
         this.playerDisplays.forEach(playerDisplay => {
             const character = playerDisplay.getCharacter();
-            this.drawHealthBarWithDamage(50, playerStartY, playerDisplay.getDisplayHealth(), playerDisplay.getPreviousHealth(), character.maxHealth, 'blue', character.name);
+            this.drawHealthBarWithDamage(50, playerStartY, playerDisplay.getDisplayHealth(), playerDisplay.getPreviousHealth(), character.maxHealth, ThemeColors.healthPlayer, character.name);
             playerStartY += yIncrement;
         });
         this.enemyDisplays.forEach(enemyDisplay => {
             const character = enemyDisplay.getCharacter();
-            this.drawHealthBarWithDamage(50, enemyStartY, enemyDisplay.getDisplayHealth(), enemyDisplay.getPreviousHealth(), character.maxHealth, 'red', character.name);
+            this.drawHealthBarWithDamage(50, enemyStartY, enemyDisplay.getDisplayHealth(), enemyDisplay.getPreviousHealth(), character.maxHealth, ThemeColors.healthEnemy, character.name);
             enemyStartY += yIncrement;
         });
     }
@@ -94,22 +110,23 @@ export class SimpleRenderer {
         const barHeight = 20;
         const healthPercent = health / maxHealth;
         const previousHealthPercent = previousHealth / maxHealth;
-        // Background (empty bar)
-        this.ctx.fillStyle = 'lightgray';
+        // Background using theme color
+        this.ctx.fillStyle = ThemeColors.healthBackground;
         this.ctx.fillRect(x, y, barWidth, barHeight);
-        // Main health (current health)
+        // Main health bar
         this.ctx.fillStyle = color;
         this.ctx.fillRect(x, y, barWidth * healthPercent, barHeight);
-        // Damage flash bar (from current health to previous health)
+        // Damage flash bar
         if (previousHealth > health) {
-            this.ctx.fillStyle = 'yellow'; // or 'orange' for damage color
+            this.ctx.fillStyle = ThemeColors.accentDanger;
             this.ctx.fillRect(x + barWidth * healthPercent, y, barWidth * (previousHealthPercent - healthPercent), barHeight);
         }
-        // Border and label (same as before)
-        this.ctx.strokeStyle = 'black';
+        // Border using theme color
+        this.ctx.strokeStyle = ThemeColors.borderPrimary;
         this.ctx.strokeRect(x, y, barWidth, barHeight);
-        this.ctx.fillStyle = 'black';
-        this.ctx.font = '16px Arial';
+        // Label using theme text color and font
+        this.ctx.fillStyle = ThemeColors.textPrimary;
+        this.ctx.font = '18px Palatino'; // Match your theme font
         this.ctx.fillText(`${label}: ${Math.floor(health)}/${maxHealth}`, x, y - 5);
     }
     drawEnemySelectButtons() {

@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Combat System</title>
+    <link rel="stylesheet" href="dark-fantasy.css"></style>
     <style>
         canvas {
             border: 1px solid black;
@@ -35,16 +36,16 @@
     </style>
 </head>
 <body>
-    <canvas id="game-canvas" width="400" height="300"></canvas>
+    <canvas id="game-canvas" class="card" width="400" height="400"></canvas>
     
     <div class="ui-container">
         <h3 id="status-message">Player's Turn</h3>
 
-        <div id="target-selection" class="target-group">
+        <div id="target-selection" class="target-group card">
             <h4>Select Target:</h4>
         </div>
 
-        <button id="attack-btn">Attack</button>
+        <button id="attack-btn" class="btn">Attack</button>
     </div>
     
     <script type="module" src="dist/main.js"></script>

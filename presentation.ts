@@ -1,5 +1,5 @@
 import { EventEmitter, EventMap } from "./event-emitter.js";
-import { Character, PRESENTATION_EVENTS } from "./combat-types.js";
+import { PRESENTATION_EVENTS } from "./combat-types.js";
 
 export class PresentationController extends EventEmitter<EventMap> {
     private statusMessage: HTMLElement;
