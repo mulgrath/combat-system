@@ -174,6 +174,7 @@ export class SimpleRenderer {
             input.name = 'enemy';
             input.id = `enemy-${id}`;
             input.value = id.toString();
+            input.style.accentColor = ThemeColors.accentPrimary;
             if (id === 0) {
                 input.checked = true; // select first radio by default
             }
@@ -181,6 +182,7 @@ export class SimpleRenderer {
             const label = document.createElement('label');
             label.htmlFor = input.id;
             label.textContent = enemyDisplay.getCharacter().name;
+            label.style.font = '18px Palatino';
 
             const container = document.createElement('div');
             container.appendChild(input);
